@@ -1,0 +1,43 @@
+int sensorPin1 = A0;
+int sensorPin2 = A1;
+int buzzer = 10;
+int counter = 0;
+
+
+void setup()
+{
+  pinMode(sensorPin1, INPUT);
+  pinMode(sensorPin2, INPUT);
+  pinMode(buzzer, OUTPUT);
+
+  Serial.begin(9600);
+}
+
+void loop(){
+  Serial.println(sensorPin1); 
+  Serial.println(sensorPin2); 
+{
+  
+  
+  if( analogRead(sensorPin1)<= 300 && analogRead(sensorPin2)> 300 )  
+  {
+       counter += 1;
+        delay(100);
+  }
+  else if( analogRead(sensorPin2)<= 300 && analogRead(sensorPin1)> 300 )  
+  {
+       counter -= 1;
+        delay(100);
+  }
+  if(counter > 5 )
+  {
+    tone(buzzer,450);  
+    delay(500);
+    
+   }else noTone(buzzer);
+  
+  }
+}
+
+
+  
